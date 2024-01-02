@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import re
 import dj_database_url
 
 if os.path.exists('env.py'):
@@ -63,10 +64,10 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ['8000-brionconroy-drfapi-3itsp3v3n1u.ws-eu107.gitpod.io',
-                 'drf-api-2023-6c240fdbe670.herokuapp.com',
-                 'localhost'
-                ]
+ALLOWED_HOSTS = [
+    os.environ.get('ALLOWED_HOST'),
+    'localhost'
+]
 
 if 'CLIENT_ORIGIN' in os.environ:
      CORS_ALLOWED_ORIGINS = [
